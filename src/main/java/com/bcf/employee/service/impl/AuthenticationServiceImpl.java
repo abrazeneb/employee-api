@@ -5,7 +5,6 @@ import com.bcf.employee.dto.AuthenticationTokenResponseDto;
 import com.bcf.employee.dto.UserDto;
 import com.bcf.employee.exception.AuthenticationException;
 import com.bcf.employee.mapper.UserMapper;
-import com.bcf.employee.repository.UserRepository;
 import com.bcf.employee.security.JwtUtils;
 import com.bcf.employee.service.AuthenticationService;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +13,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Slf4j
