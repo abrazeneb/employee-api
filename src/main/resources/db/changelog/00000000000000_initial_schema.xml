@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="000000000000001" author="abraham">
+        <createTable tableName="user">
+            <column name="id"  type="binary(255)">
+                <constraints primaryKey="true"  nullable="false"/>
+            </column>
+            <column name="username" type="varchar(100)" >
+                <constraints unique="true" />
+            </column>
+            <column name="password" type="varchar(300)" />
+            <column name="full_name" type="varchar(255)" />
+            <column name="enabled" type="boolean" defaultValue="true"/>
+        </createTable>
+
+        <createTable tableName="role">
+            <column name="id"  type="binary(255)">
+                <constraints primaryKey="true"  nullable="false"/>
+            </column>
+            <column name="authority" type="varchar(100)">
+                <constraints unique="true" nullable="false" />
+            </column>
+        </createTable>
+        <createTable tableName="user_authority">
+            <column name="user_id" type="binary(255)"/>
+            <column name="role_id" type="binary(255)"/>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="user_authority"
+                                 constraintName="fk_user_authority_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="user"/>
+
+        <addForeignKeyConstraint baseColumnNames="role_id"
+                                 baseTableName="user_authority"
+                                 constraintName="fk_role_role_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="role"/>
+
+        <createTable tableName="employee">
+            <column name="id"  type="binary(255)">
+                <constraints primaryKey="true"  nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)" />
+            <column name="supervisor_id" type="binary(255)" />
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

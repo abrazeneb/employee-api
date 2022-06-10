@@ -1,0 +1,13 @@
+package com.bcf.employee.exception;
+
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+public class RecordNotFoundException extends RuntimeException{
+    private static final long serialVersionUID = 2865786122992884101L;
+
+    public RecordNotFoundException(String message) {
+        super(message);
+        log.error(message, this);
+    }
+}

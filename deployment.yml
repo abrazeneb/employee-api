@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: employee-heirarchy-api
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      bb: employee-heirarchy-api
+  template:
+    metadata:
+      labels:
+        bb: employee-heirarchy-api
+    spec:
+      containers:
+        - name: employee-heirarchy-api
+          image: abrazeneb/employee-heirarchy-api:0.0.1-SNAPSHOT
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: employee-heirarchy-api
+  namespace: default
+spec:
+  type: NodePort
+  selector:
+    bb: employee-heirarchy-api
+  ports:
+    - port: 8080
+      targetPort: 8080
+      nodePort: 32000

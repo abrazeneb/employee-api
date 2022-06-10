@@ -1,0 +1,21 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: employee-heirarchy-api
+  liquibase:
+    enabled: true
+    change-log: classpath:/db/master.xml
+  datasource:
+    url: jdbc:h2:mem:mydb
+    username: sa
+    password: password
+    driverClassName: org.h2.Driver
+    jpa:
+      database-platform: org.hibernate.dialect.H2Dialect
+
+security:
+  application:
+    jwtSecret: jwtSecret
+    jwtExpirationMs: 3600000
